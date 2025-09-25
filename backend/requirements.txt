@@ -1,7 +1,0 @@
-Flask
-Flask-Cors
-google-generativeai
-pandas
-sentence-transformers
-faiss-cpu
-numpy
