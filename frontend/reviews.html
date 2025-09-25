@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Reviews - Company Culture Analyzer</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Company Culture Analyzer</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="search.html">Search</a>
+      <a href="reviews.html" class="active">Reviews</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Share Your Experience</h2>
+      <p>Submit honest company reviews to help others make informed decisions.</p>
+    </section>
+
+    <section class="review-card">
+      <h3>Submit Your Review</h3>
+      <input type="text" id="company-name" placeholder="Company Name">
+      <input type="text" id="review-title" placeholder="Review Title">
+      <textarea id="review-text" placeholder="Write your review here"></textarea>
+
+      <div class="rating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+
+      <button class="submit-btn" onclick="submitReview()">Submit Review</button>
+      <div id="review-result">Your submitted reviews will appear here.</div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Company Culture Analyzer
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
