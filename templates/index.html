@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>revü | Company Culture Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- All CSS is now included directly below -->
+    <style>
+        :root {
+            --primary-color: #0052cc;
+            --secondary-color: #f4f5f7;
+            --font-color: #172b4d;
+            --border-color: #dfe1e6;
+            --background-color: #ffffff;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* UPDATED: Added a subtle gradient background */
+            background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+            color: var(--font-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #5e6c84;
+            margin-top: 5px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #0041a3;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background-color: #a5adba;
+            cursor: not-allowed;
+        }
+
+        #result-container {
+            margin-top: 30px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--secondary-color);
+        }
+
+        #result-container.hidden {
+            display: none;
+        }
+
+        #result-container h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        #answer-output {
+            white-space: pre-wrap;
+            line-height: 1.6;
+            color: var(--font-color);
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid var(--primary-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* NEW: Styles for the explanation section */
+        .project-explanation {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #42526e;
+        }
+        
+        .project-explanation h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .project-explanation p {
+            margin-bottom: 15px;
+        }
+
+        .project-explanation code {
+            background-color: #f4f5f7;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #8993a4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="logo">revü</h1>
+            <p class="tagline">Uncover the truth behind company culture, powered by AI.</p>
+        </header>
+
+        <main>
+            <form id="query-form">
+                <div class="input-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company" placeholder="e.g., Google (Optional)">
+                </div>
+                <div class="input-group">
+                    <label for="query">Your Question</label>
+                    <textarea id="query" name="query" rows="4" placeholder="e.g., What is the work-life balance like?" required></textarea>
+                </div>
+                <button type="submit" id="submit-button">
+                    <span class="button-text">Analyze Culture</span>
+                </button>
+            </form>
+
+            <div id="result-container" class="hidden">
+                <h2>Analysis</h2>
+                <div id="loader" class="loader"></div>
+                <div id="answer-output"></div>
+            </div>
+        </main>
+
+        <!-- NEW: Added project explanation section -->
+        <section class="project-explanation">
+            <h3>About This Project</h3>
+            <p>
+                <b>revü</b> is an AI-powered tool designed to provide deep insights into company culture by analyzing thousands of employee reviews. Instead of manually sifting through data, users can ask a direct question and receive a concise, accurate summary grounded in real employee feedback.
+            </p>
+
+            <h3>The RAG Concept</h3>
+            <p>
+                This project uses a powerful AI technique called <b>Retrieval-Augmented Generation (RAG)</b>. A standard Large Language Model (LLM) answers questions from its general knowledge, which can sometimes be outdated or too broad. RAG improves this by forcing the model to base its answers on specific, relevant information that we provide.
+            </p>
+
+            <h3>How We Implemented RAG</h3>
+            <p>
+                Our process works in a few simple steps:
+                <br><b>1. Retrieval:</b> When you ask a question, we first convert it into a numerical representation (an embedding). We then search our database of reviews to find the ones that are most semantically similar to your question.
+                <br><b>2. Augmentation:</b> We take the top 5 most relevant reviews and bundle them together as "context".
+                <br><b>3. Generation:</b> Finally, we send your original question along with this context to the Google Gemini API, instructing it to generate an answer based *only* on the provided reviews. This ensures the response is factual, relevant, and directly tied to the data.
+            </p>
+            
+            <h3>Technology Used</h3>
+            <p>
+                The backend is built with <b>Python</b> and <b>Flask</b>. We use <b>Sentence-Transformers</b> for the retrieval step and the lightning-fast <b>Google Gemini API</b> (specifically, the <code>gemini-2.5-flash-preview-05-20</code> model) for the generation step, ensuring a speedy and high-quality response.
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 revü Project</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
