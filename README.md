@@ -136,3 +136,18 @@ Open your browser and navigate to `http://127.0.0.1:5000` (or the port defined i
 - **Embedding Models**: [Sentence-Transformers](https://sbert.net/) (`all-MiniLM-L6-v2`), [OpenAI API](https://platform.openai.com/) (`text-embedding-3-small`)
 - **LLM API**: [Google Generative AI SDK](https://github.com/google/generative-ai-python) (`gemini-2.5-flash-preview-05-20`)
 - **Frontend**: HTML5, CSS3 (Poppins typography, custom gradients), Vanilla JavaScript (ES6 Fetch)
+
+---
+
+## 👥 Team & Contributors
+
+The development and integration of **revü** was divided among the team as follows:
+
+| Contributor | Role | Core Responsibilities & Contributions |
+| :--- | :--- | :--- |
+| **Antony George Mampilly** | Lead Backend & RAG Architect | Setup core RAG pipeline, semantic search logic, Cosine similarity computation, and Gemini prompting/synthesis (`rag_pipeline.py`). |
+| **Aaisha M Najeeb** | Backend & Integration Developer | Developed Flask routing server (`app.py`), backend API endpoints, metadata serialization, and wired backend connection with frontend queries (`static/script.js`). |
+| **Jiss Maria Jose** | Data & Embedding Pipeline Engineer | Engineered ETL pipelines for Google sheets review data, data pre-processing, chunking, and precomputing local/cloud embeddings database (`embeddings.py`, `data/`). |
+| **Shakkira V A** | Frontend Developer | Designed visual UI layouts, interactive theme-toggle interface, CSS layouts, typography, and responsive styling (`templates/index.html`, `static/styles.css`). |
+
+
